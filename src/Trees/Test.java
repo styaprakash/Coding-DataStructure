@@ -146,6 +146,16 @@ public class Test {
             return Math.max(root.key, Math.max(getMax(root.left),getMax(root.right)));
         }
     }
+    
+    //Height of a binary tree
+    static int height1(Node root){
+        if (root==null) return 0;
+        else {
+            int lh=height1(root.left);
+            int rh=height1(root.right);
+            return Math.max(lh,rh)+1;
+        }
+    }
 
     //Number of leaf Nodes
     static int numLeaves(Node root){
@@ -156,26 +166,26 @@ public class Test {
 
     //Diameter of a binary tree
     static int res=0;
-    static int height(Node root){
+    static int diameter(Node root){
         if (root==null) return 0;
-        int lh=height(root.left);
-        int rh=height(root.right);
+        int lh=diameter(root.left);
+        int rh=diameter(root.right);
         res=Math.max(res,1+lh+rh);
         return 1+Math.max(lh,rh);
     }
 
     public static void main(String[] args) {
-//        Node root=new Node(10);
-//        root.left=new Node(20);
-//        root.right=new Node(30);
-//        root.left.left=new Node(40);
-//        root.left.right=new Node(50);
-        Node root = Input.treeInput(true, 0, true);
-        if (root != null) {
-            System.out.println("Binary Tree created successfully!");
-        } else {
-            System.out.println("Binary Tree is empty.");
-        }
+        Node root=new Node(10);
+        root.left=new Node(20);
+        root.right=new Node(30);
+        root.left.left=new Node(40);
+        root.left.right=new Node(50);
+//        Node root = Input.treeInput(true, 0, true);
+//        if (root != null) {
+//            System.out.println("Binary Tree created successfully!");
+//        } else {
+//            System.out.println("Binary Tree is empty.");
+//        }
 
         //Tree traversals
         traversal(root);
@@ -196,7 +206,8 @@ public class Test {
 
         iteTraversal(root);
 
-        System.out.println("The diameter of this binary tree: "+height(root));
+        System.out.println("The diameter of this binary tree: "+diameter(root));
+        System.out.println("The height of this binary tree: "+height1(root));
 
     }
 }
